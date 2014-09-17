@@ -1,8 +1,6 @@
 class DeliveriesController < ApplicationController
   def index
-    # @deliveries = Delivery.where(sender_id: nil)
-    #for when we have deliveries without sender_id's
-    @deliveries = Delivery.all
+    @deliveries = Delivery.where(sender_id: nil)
   end
 
   def new
