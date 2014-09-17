@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20140917150723) do
   end
 
   create_table "ratings", force: true do |t|
-    t.string   "rated_for"
-    t.integer  "rating_id"
-    t.integer  "rated_id"
+    t.string   "for_type"
+    t.integer  "rating_user_id"
+    t.integer  "rated_user_id"
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
