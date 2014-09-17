@@ -27,5 +27,5 @@ end
 30.times do
   carrier_id = (1..10).to_a.sample
   time = Date.today + 7
-  Delivery.create!(carrier_id: carrier_id, recipient_id: User.find(sender_id).recipients.first, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, departure_date: time, arrival_date: (time+(60*60*24)))
+  Delivery.create!(carrier_id: carrier_id, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, departure_date: time, arrival_date: (time+(60*60*24)))
 end
