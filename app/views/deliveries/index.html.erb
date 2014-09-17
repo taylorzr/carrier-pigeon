@@ -1,0 +1,25 @@
+<h2>Deliveries</h2>
+
+<table>
+  <tr>
+    <th>Package Size</th>
+    <th>Depart From</th>
+    <th>Departure Date</th>
+    <th>Arrive At</th>
+    <th>Arrival Date</th>
+    <th>Price</th>
+    </th>
+  </tr>
+
+  <% @deliveries.each do |d| %>
+   <tr>
+      <td><a href="<%= delivery_path(d.id) %>"><%= d.package_size %></a></td>
+      <td><a href="<%= delivery_path(d.id) %>"><%= d.from_city %></a></td>
+      <td><a href="<%= delivery_path(d.id) %>"><%= d.departure_date %></a></td>
+      <td><a href="<%= delivery_path(d.id) %>"><%= d.to_city %></a></td>
+      <td><a href="<%= delivery_path(d.id) %>"><%= d.arrival_date %></a></td>
+      <td><a href="<%= delivery_path(d.id) %>">$<%= d.price %></a></td>
+    </tr>
+  <% end %>
+</table>
+
