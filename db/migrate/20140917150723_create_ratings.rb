@@ -4,7 +4,8 @@ class CreateRatings < ActiveRecord::Migration
       t.string :for_type
       t.integer :rating_user_id
       t.integer :rated_user_id
-      t.integer :rating
+      t.integer :delivery_id
+      t.integer :score
 
       t.timestamps
     end

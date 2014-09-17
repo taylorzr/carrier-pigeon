@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140917150723) do
     t.string   "for_type"
     t.integer  "rating_user_id"
     t.integer  "rated_user_id"
+    t.integer  "delivery_id"
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
