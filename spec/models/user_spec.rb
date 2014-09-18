@@ -8,8 +8,9 @@ describe 'User' do
     @recipient = Recipient.create(user_id: 2, name: "Theo", email: "test")
   end
 
-  it 'should show user1 with a single carried delivery' do
+  it 'assigns carried delivery' do
     expect(@user1.carried_deliveries.size).to eq(1)
+    expect(@user1.sent_deliveries.size).to eq(0)
   end
 
   it 'should show user2 with a single sent delivery' do
