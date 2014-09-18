@@ -1,6 +1,6 @@
 class DeliveriesController < ApplicationController
   def index
-    @deliveries = Delivery.where(sender_id: nil)
+    @deliveries = Delivery.where('departure_date > ?', Date.today).where(sender_id: nil)
   end
 
   def new
