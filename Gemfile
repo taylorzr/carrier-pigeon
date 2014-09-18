@@ -34,8 +34,9 @@ gem 'faker'
 # Use unicorn as the app server
 # gem 'unicorn'
 
+gem 'rspec-rails'
+
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
   gem 'capybara', '~> 2.2.1'
   gem 'database_cleaner', '~> 1.2.0'
 end
