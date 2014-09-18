@@ -1,15 +1,15 @@
 <%= form_for @delivery do |f| %>
   <%= f.label :package_size %>
-  <%= f.text_field :package_size %>
+  <%= f.text_field :package_size %><br>
   <%= f.label :from_city %>
-  <%= f.text_field :from_city %>
+  <%= f.text_field :from_city %><br>
   <%= f.label :to_city %>
-  <%= f.text_field :to_city %>
+  <%= f.text_field :to_city %><br>
   <%= f.label :price %>
-  <%= f.number_field :price %>
+  <%= f.number_field :price %><br>
   <%= f.label :departure_date %>
-  <%= f.datetime_field :departure_date %>
+  <%= f.datetime_field :departure_date %><br>
   <%= f.label :arrival_date %>
-  <%= f.datetime_field :arrival_date %>
+  <%= f.datetime_field :arrival_date %><br>
   <%= f.submit %>
 <% end %>
