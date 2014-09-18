@@ -1,0 +1,15 @@
+<h2>Complete Your Delivery</h2>
+
+From: <%= @delivery.from_city %><br>
+To: <%= @delivery.to_city %><br>
+Price: $<%= @delivery.price %>0<br>
+Departure Date: <%= @delivery.departure_date %><br>
+Arrival Date: <%= @delivery.arrival_date %><br>
+<br>
+<%= form_for @delivery do |f| %>
+  <%= f.label :your_recipients %><br>
+  <% options = options_from_collection_for_select(@recipients, 'id', 'name') %>
+  <%= f.select :recipient_id, options %><br>
+  <%= f.hidden_field :sender_id, value: session[:user_id] %><br>
+  <%= f.submit %>
+<% end %>

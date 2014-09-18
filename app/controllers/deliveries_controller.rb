@@ -24,10 +24,24 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def edit
+    @delivery = Delivery.find(params[:id])
+    @recipients = User.find(session[:user_id]).recipients
+
+  end
+
+  def update
+    @delivery = Delivery.find(params[:id]).update(delivery_params)
+    redirect_to delivery_path(@delivery)
+  end
+
   private
 
   def delivery_params
     params.require(:delivery).permit(
+      :carrier_id,
+      :sender_id,
+      :recipient_id,
       :package_size,
       :from_city,
       :to_city,
