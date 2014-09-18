@@ -8,15 +8,15 @@ describe 'User' do
     @recipient = Recipient.create(user_id: 2, name: "Theo", email: "test")
   end
 
-  it 'should show user1 with a single carried delivery' do
-    expect(@user1.carried_deliveries.size).to eq(1)
+  it "should show that the delivery's carrier is 'Clayton'" do
+    expect(@delivery.carrier.name).to eq('Clayton')
   end
 
-  it 'should show user2 with a single sent delivery' do
-    expect(@user2.sent_deliveries.size).to eq(1)
+  it "should show that the delivery's sender is 'Mrs. Adolfo Fadel'" do
+    expect(@delivery.sender.name).to eq('Mrs. Adolfo Fadel')
   end
 
-  it 'should show that user2 has one recipient' do
-    expect(@user2.recipients.size).to eq(1)
+  it "should show that the delivery's recipient is 'Theo'" do
+    expect(@delivery.recipient.name).to eq('Theo')
   end
 end
