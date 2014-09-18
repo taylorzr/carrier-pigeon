@@ -1,5 +1,5 @@
 <h2>Profile for <%= @user.name %></h2>
-<h4>Carrier Rating: PLACEHOLDER</h4>
+<h4>Carrier Rating: <%= @user.carrier_rating %></h4>
 <h4>Carried Deliveries: <%= @user.carried_deliveries.length %></h4>
   <table border="1" style="width: 80%">
     <tr>
@@ -16,7 +16,7 @@
     <% end %>
   </table>
 
-<h4>Sender Rating: PLACEHOLDER</h4>
+<h4>Sender Rating: <%= @user.sender_rating %></h4>
 <h4>Sent Deliveries: <%= @user.sent_deliveries.length %></h4>
   <table border="1" style="width: 80%">
     <tr>
