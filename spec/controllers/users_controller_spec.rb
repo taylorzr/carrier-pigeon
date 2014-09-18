@@ -14,5 +14,15 @@ describe UsersController do
       expect(response.status).to eq 302
       expect(response).to redirect_to(user_path(assigns(:user)))
     end
+
+    it 'redirect the page again if the user is not created' do
+      post :create, user: {name: "Clayton", username: "Tester", password: "password", city: "Chicago"}
+      expect(response).to redirect_to(new_user_path)
+    end
   end
+
+
+  # describe '#show' do
+
+  # end
 end
