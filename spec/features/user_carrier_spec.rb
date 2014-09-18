@@ -25,6 +25,7 @@ feature 'Logout' do
   end
 end
 
+
 feature 'Send a parcel' do
   scenario 'The homepage has a link to all available deliveries' do
     visit root_url
