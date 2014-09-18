@@ -37,7 +37,7 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id]).update(delivery_params)
-    redirect_to delivery_path(@delivery)
+    redirect_to delivery_path
   end
 
   private

@@ -13,12 +13,13 @@
 
   <% @deliveries.each do |d| %>
    <tr>
-      <td><a href="<%= delivery_path(d.id) %>"><%= d.package_size %></a></td>
-      <td><a href="<%= delivery_path(d.id) %>"><%= d.from_city %></a></td>
-      <td><a href="<%= delivery_path(d.id) %>"><%= d.departure_date %></a></td>
-      <td><a href="<%= delivery_path(d.id) %>"><%= d.to_city %></a></td>
-      <td><a href="<%= delivery_path(d.id) %>"><%= d.arrival_date %></a></td>
-      <td><a href="<%= delivery_path(d.id) %>">$<%= d.price %></a></td>
+      <td><%= d.package_size %></td>
+      <td><%= d.from_city %></td>
+      <td><%= d.departure_date %></td>
+      <td><%= d.to_city %></td>
+      <td><%= d.arrival_date %></td>
+      <td>$<%= d.price %></td>
+      <td><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></td>
     </tr>
   <% end %>
 </table>

@@ -4,7 +4,8 @@
 <%= @delivery.departure_date %><br>
 <%= @delivery.price %><br>
 
-<%= @delivery.sender_id %><br>
+
+Recipient: <%= @delivery.recipient.name %><br>
 
 <%= link_to 'Get this Travel', edit_delivery_path %>
 
