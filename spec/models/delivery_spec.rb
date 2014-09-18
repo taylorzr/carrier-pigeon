@@ -1,20 +1,6 @@
 require 'rails_helper'
 
-require 'rails_helper'
-
-#factory girl to check for instance
-describe User do
-  before(:each) do
-    @delivery = FactoryGirl.build(:delivery)
-  end
-
-  it 'should create a new instance of delivery' do
-    Delivery.create!(@delivery.attributes)
-  end
-end
-
-#rspec to check associations
-describe 'User' do
+describe 'Delivery' do
   before(:each) do
     @user1 = User.create(name: "Clayton", username: "Tester", email: "me@example", password_digest: "password", city: "Chicago")
     @user2 = User.create(name: "Mrs. Adolfo Fadel", username: "rosalee_renner", email: "jaron.mohr@blicklakin.info", password_digest: "password", city: "East Kaden")
