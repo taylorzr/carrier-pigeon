@@ -1,10 +1,18 @@
 class DeliveriesController < ApplicationController
   def index
-    @deliveries = Delivery.where('departure_date > ?', Date.today).where(sender_id: nil)
+    if session[:user_id]
+      @deliveries = Delivery.where('departure_date > ?', Date.today).where(sender_id: nil)
+    else
+      redirect_to login_url
+    end
   end
 
   def new
-    @delivery = Delivery.new
+    if session[:user_id]
+      @delivery = Delivery.new
+    else
+      redirect_to login_url
+    end
   end
 
   def create
