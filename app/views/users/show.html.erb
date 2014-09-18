@@ -1,0 +1,6 @@
+<h2>Profile for <%= @user.name %></h2>
+<h3>Carried: <%= link_to @user.carried_deliveries.length, deliveries_url(session[:user_id]) %></h3>
+<h3>Sent: <%= @user.sent_deliveries.length %></h3>
+<br>
+<h3>Carrier Rating: </h3>
+<h3>Sender Rating: </h3>
