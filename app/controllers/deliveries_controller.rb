@@ -15,6 +15,11 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def show
+    @delivery = Delivery.find(params[:id])
+    @current_user = User.find(session[:user_id])
+  end
+
   def create
     @delivery = Delivery.new(delivery_params)
     if @delivery.save
