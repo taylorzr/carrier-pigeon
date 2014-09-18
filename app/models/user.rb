@@ -3,5 +3,7 @@ class User < ActiveRecord::Base
   has_many :sent_deliveries, class_name: "Delivery", foreign_key: "sender_id"
   has_many :recipients
 
+  validates :email, uniqueness: :true, presence: :true
+
   has_secure_password
 end
