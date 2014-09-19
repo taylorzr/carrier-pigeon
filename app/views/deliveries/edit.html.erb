@@ -13,3 +13,6 @@ Arrival Date: <%= @delivery.arrival_date %><br>
   <%= f.hidden_field :sender_id, value: session[:user_id] %><br>
   <%= f.submit %>
 <% end %>
+
+<%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
+
