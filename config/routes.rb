@@ -2,10 +2,14 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
-  resources :users
-  # match '/signup' => 'users#new'
+  resources :users do
+    resources :recipients
+  endgit
 
-  resources :deliveries
+  resources :deliveries do
+    resources :ratings
+  end
+
 
   get '/login'  => 'sessions#new'
   post '/login' => 'sessions#create'
