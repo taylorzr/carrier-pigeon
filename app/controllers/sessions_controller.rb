@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
       if @user.authenticate(params[:password]) # Need to fix
         session[:user_id] = @user.id
         redirect_to user_path(session[:user_id])
+      else
+        redirect_to login_path
       end
     else
       # flash[:error] = "Wrong login info"
