@@ -4,16 +4,14 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :recipients
-  endgit
+  end
 
   resources :deliveries do
     resources :ratings
   end
 
-
   get '/login'  => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout
-
 
 end
