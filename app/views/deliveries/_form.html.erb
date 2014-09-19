@@ -1,4 +1,5 @@
 <%= form_for @delivery do |f| %>
+  <%= f.hidden_field :carrier_id, value: session[:user_id] %><br>
   <%= f.label :package_size %>
   <%= f.text_field :package_size %><br>
   <%= f.label :from_city %>
