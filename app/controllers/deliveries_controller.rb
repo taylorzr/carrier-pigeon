@@ -32,7 +32,6 @@ class DeliveriesController < ApplicationController
   def edit
     @delivery = Delivery.find(params[:id])
     @recipients = User.find(session[:user_id]).recipients
-
   end
 
   def update
