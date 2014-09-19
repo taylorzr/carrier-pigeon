@@ -2,6 +2,8 @@
 
 <div class='button carry'><a href="<%= new_delivery_path %>">Carry a Package</a></div>
 <div class='button send'><a href="<%= deliveries_path %>">Send a Package</a></div>
+<%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
+
 
 <h4>Carrier Rating: <%= @user.carrier_rating %></h4>
 <h4>Carried Deliveries: <%= @user.carried_deliveries.length %></h4>

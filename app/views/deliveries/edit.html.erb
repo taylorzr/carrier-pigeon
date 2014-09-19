@@ -10,9 +10,10 @@ Arrival Date: <%= @delivery.arrival_date %><br>
   <%= f.label :your_recipients %><br>
   <% options = options_from_collection_for_select(@recipients, 'id', 'name') %>
   <%= f.select :recipient_id, options %><br>
+<%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
   <%= f.hidden_field :sender_id, value: session[:user_id] %><br>
+  <br>
   <%= f.submit %>
 <% end %>
 
-<%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
 
