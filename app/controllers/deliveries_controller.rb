@@ -23,7 +23,7 @@ class DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
     if @delivery.save
-      redirect_to delivery_path
+      redirect_to delivery_path(@delivery.id)
     else
       render 'new'
     end

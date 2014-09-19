@@ -1,12 +1,14 @@
+<h2>Your Delivery</h2>
+
 <br><%= @delivery.carrier_id %><br>
 <%= @delivery.from_city %><br>
 <%= @delivery.to_city %><br>
 <%= @delivery.departure_date %><br>
-<%= @delivery.price %><br>
+$<%= @delivery.price %>0<br>
 
-
-Recipient: <%= @delivery.recipient.name %><br>
-
+<% if @delivery.recipient %>
+  Recipient: <%= @delivery.recipient.name %><br>
+<% end %>
 <%= link_to 'Get this Travel', edit_delivery_path %>
 
 <%= link_to 'Back', user_path(@current_user.id) %>
