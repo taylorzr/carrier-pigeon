@@ -43,6 +43,7 @@ gem 'rspec-rails'
 group :development, :test do
   gem 'capybara', '~> 2.2.1'
   gem 'shoulda-matchers', require: false
+  gem 'simplecov'
   gem 'database_cleaner', '~> 1.2.0'
 end
 
