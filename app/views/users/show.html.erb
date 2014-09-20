@@ -5,37 +5,165 @@
 <%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
 
 
-<h4>Carrier Rating: <%= @user.carrier_rating %></h4>
-<h4>Carried Deliveries: <%= @user.carried_deliveries.length %></h4>
-  <table border="1" style="width: 80%">
-    <tr>
-      <th>Arrival Date</th>
-      <th>To</th>
-      <th>From</th>
-    </tr>
-    <% @user.carried_deliveries.each do |carry| %>
-    <tr>
-      <td><%= carry.arrival_date %></td>
-      <td><%= carry.to_city %></td>
-      <td><%= carry.from_city %></td>
-    </tr>
-    <% end %>
-  </table>
+<h2>These are your Sends</h2>
 
-<h4>Sender Rating: <%= @user.sender_rating %></h4>
-<h4>Sent Deliveries: <%= @user.sent_deliveries.length %></h4>
-  <table border="1" style="width: 80%">
-    <tr>
-      <th>Arrival Date</th>
-      <th>To</th>
-      <th>From</th>
-    </tr>
-    <% @user.sent_deliveries.each do |sent| %>
-    <tr>
-      <td><%= sent.arrival_date %></td>
-      <td><%= sent.to_city %></td>
-      <td><%= sent.from_city %></td>
-    </tr>
-    <% end %>
-  </table>
+<% if @user.requested_sends %>
+<h3>Request to send</h3>
+<table>
+  <tr>
+    <th>Package size</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Recipient</th>
+  </tr>
+  <% @user.requested_sends.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.recipient.name %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% end %>
+
+<% if @user.pending_sends %>
+<h3>Pending sends</h3>
+<table>
+  <tr>
+    <th>Package size</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Recipient</th>
+    <th>Traveler</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+  </tr>
+  <% @user.pending_sends.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.recipient.name %></td>
+    <td><%= delivery.sender.name %></td>
+    <td><%= delivery.departure_date %></td>
+    <td><%= delivery.arrival_date %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% end %>
+
+<% if @user.completed_sends %>
+<h3>Delivered Parcels</h3>
+<table>
+  <tr>
+    <th>Package size</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Recipient</th>
+    <th>Traveler</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+  </tr>
+  <% @user.completed_sends.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.recipient.name %></td>
+    <td><%= delivery.sender.name %></td>
+    <td><%= delivery.departure_date %></td>
+    <td><%= delivery.arrival_date %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% end %>
+
+
+
+
+
+
+<h2>These are your Carries</h2>
+
+
+<% if @user.requested_carries %>
+<h3>Request to carry</h3>
+<table>
+  <tr>
+    <th>Package size</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+  </tr>
+  <% @user.requested_carries.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.departure_date %></td>
+    <td><%= delivery.arrival_date %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% end %>
+
+<% if @user.pending_carries %>
+<h3>Pending carries</h3>
+<table>
+  <tr>
+    <th>Package size</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Recipient</th>
+    <th>Traveler</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+  </tr>
+  <% @user.pending_carries.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.recipient.name %></td>
+    <td><%= delivery.sender.name %></td>
+    <td><%= delivery.departure_date %></td>
+    <td><%= delivery.arrival_date %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% end %>
+
+<% if @user.completed_carries %>
+<h3>Delivered Parcels</h3>
+<table>
+  <tr>
+    <th>Package size</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Recipient</th>
+    <th>Traveler</th>
+    <th>Departure Date</th>
+    <th>Arrival Date</th>
+  </tr>
+  <% @user.completed_carries.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.recipient.name %></td>
+    <td><%= delivery.sender.name %></td>
+    <td><%= delivery.departure_date %></td>
+    <td><%= delivery.arrival_date %></td>
+  </tr>
+  <% end %>
+
+</table>
+<% end %>
 
