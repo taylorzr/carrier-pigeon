@@ -7,7 +7,7 @@ User.create!(name: "Clayton", username: "Tester", email: "me@example", password:
 end
 
 1.upto(20) do |i|
-  Recipient.create!(user_id: i, name: Faker::Name.name, email: Faker::Internet.email)
+  3.times { Recipient.create!(user_id: i, name: Faker::Name.name, email: Faker::Internet.email) }
 end
 
 30.times do
