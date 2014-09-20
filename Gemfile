@@ -32,7 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker'
 
-gem 'foundation-rails'
+# gem 'foundation-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
