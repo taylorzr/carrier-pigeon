@@ -1,0 +1,9 @@
+<%= form_for @delivery do |f| %>
+  <%= f.hidden_field :sender_id, value: session[:user_id] %><br>
+
+  <% options = options_from_collection_for_select(@recipients, 'id', 'name') %>
+
+  <%= f.label :recipient %>
+  <%= f.select :recipient_id, options %><br>
+  <%= f.submit %>
+<% end %>

@@ -2,6 +2,8 @@ class DeliveriesController < ApplicationController
   def index
     if session[:user_id]
       @deliveries = Delivery.where('departure_date > ?', Date.today).where(sender_id: nil)
+      @delivery = Delivery.new
+      @recipients = User.find(session[:user_id]).recipients
     else
       redirect_to login_url
     end
