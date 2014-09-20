@@ -1,3 +1,30 @@
-<h2>Carry Package</h2>
+<h2>Carry A Package Below</h2>
 
+<table>
+  <tr>
+    <th>Package Size</th>
+    <th>Depart From</th>
+    <th>Departure Date</th>
+    <th>Arrive At</th>
+    <th>Arrival Date</th>
+    <th>Price</th>
+    </th>
+  </tr>
+
+
+
+  <% @sender_deliveries.each do |d| %>
+   <tr>
+      <td><%= d.package_size %></td>
+      <td><%= d.from_city %></td>
+      <td><%= d.departure_date %></td>
+      <td><%= d.to_city %></td>
+      <td><%= d.arrival_date %></td>
+      <td>$<%= d.price %></td>
+      <td><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Request to Carry</h2>
 <div class="form"><%= render 'carrier_form' %></div>
