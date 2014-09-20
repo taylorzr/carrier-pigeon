@@ -4,8 +4,9 @@ require 'spec_helper'
 describe DeliveriesController do
 
   before(:each) do
-    Delivery.create!(from_city: "Here" ,to_city: "There", departure_date: "2014-12-12")
-    Delivery.create!(from_city: "Aqui" ,to_city: "Alla")
+    user = User.create!(name: "Zach", email: "taylorzr@gmail.com", password: "password")
+    Delivery.create!(carrier: user, from_city: "Here" ,to_city: "There", departure_date: "2014-12-12")
+    Delivery.create!(carrier: user, from_city: "Aqui" ,to_city: "Alla")
 
   end
 
@@ -24,7 +25,7 @@ describe DeliveriesController do
     it 'has a variable that contains multiple objects' do
       session[:user_id] = 1
       get :index
-      expect(assigns(:deliveries).length).to be(1)
+      expect(assigns(:carrier_deliveries).length).to be(1)
     end
 
   end
