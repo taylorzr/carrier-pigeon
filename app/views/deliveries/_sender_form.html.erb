@@ -1,5 +1,5 @@
 <%= form_for @delivery do |f| %>
-  <%= f.hidden_field :sender_id, value: session[:user_id] %><br>
+  <%= f.hidden_field :sender_id, value: session[:user_id] %>
 
   <% options = options_from_collection_for_select(@recipients, 'id', 'name') %>
   <%= f.label :package_size %>
@@ -10,5 +10,7 @@
   <%= f.text_field :to_city %><br>
   <%= f.label :recipient %>
   <%= f.select :recipient_id, options %><br>
+  <%= f.label :price %>
+  <%= f.number_field :price %><br>
   <%= f.submit %>
 <% end %>

@@ -4,9 +4,7 @@
   <tr>
     <th>Package Size</th>
     <th>Depart From</th>
-    <th>Departure Date</th>
     <th>Arrive At</th>
-    <th>Arrival Date</th>
     <th>Price</th>
     </th>
   </tr>
@@ -17,9 +15,7 @@
    <tr>
       <td><%= d.package_size %></td>
       <td><%= d.from_city %></td>
-      <td><%= d.departure_date %></td>
       <td><%= d.to_city %></td>
-      <td><%= d.arrival_date %></td>
       <td>$<%= d.price %></td>
       <td><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></td>
     </tr>
