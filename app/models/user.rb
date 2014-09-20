@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   end
 
   def pending_sends
+     self.sent_deliveries.where('departure_date > ?', Date.today).where(carrier_id: nil)
+
     #yes carrier_id, date is in future
   end
 

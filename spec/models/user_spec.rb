@@ -34,4 +34,7 @@ describe 'User' do
   it 'should display the correct rating score' do
     expect(@user1.ratings.first.score).to eq(5)
   end
+
+
+
 end
