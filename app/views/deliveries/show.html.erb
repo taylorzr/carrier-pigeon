@@ -1,14 +1,25 @@
 <h2>Your Delivery</h2>
-
-<br><%= @delivery.carrier_id %><br>
-<%= @delivery.from_city %><br>
-<%= @delivery.to_city %><br>
-<%= @delivery.departure_date %><br>
-<%= @delivery.price %><br>
-
-<% if @delivery.recipient %>
-  Recipient: <%= @delivery.recipient.name %><br>
+<% if @delivery.sender %>
+  Sender Name: <%= @delivery.sender.name %><br>
+  Sender Email: <%= @delivery.sender.email %><br>
 <% end %>
-<%= link_to 'Get this Travel', edit_delivery_path %>
+<br>
+<% if @delivery.carrier %>
+  Carrier Name: <%= @delivery.carrier.name %><br>
+  Carrier Email: <%= @delivery.carrier.email %><br>
+<% end %>
 
+<% @delivery.carrier_id %><br>
+From: <%= @delivery.from_city %><br>
+To: <%= @delivery.to_city %><br>
+Departure Date: <%= @delivery.departure_date %><br>
+Arrival Date: <%= @delivery.arrival_date %><br>
+Price: $<%= @delivery.price %>0<br>
+<br>
+<% if @delivery.recipient %>
+  Recipient Name: <%= @delivery.recipient.name %><br>
+  Recipient Email: <%= @delivery.recipient.email %><br>
+<% end %>
+<br>
+<!-- <%= link_to 'Confirmation', edit_delivery_path %><br> -->
 <%= link_to 'Back', user_path(@current_user.id) %>
