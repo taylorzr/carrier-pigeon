@@ -26,7 +26,8 @@ Price: $<%= @delivery.price %>0<br>
   <% end %>
 
   <% if @delivery.sender_id == nil %>
-    <%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
+    <div id="add_recipient"><%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %></div>
+    <div id="add_recipient_form"></div>
     <%= f.hidden_field :sender_id, value: session[:user_id] %><br>
   <% else %>
     <%= f.hidden_field :carrier_id, value: session[:user_id] %><br>

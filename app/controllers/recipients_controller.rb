@@ -1,4 +1,5 @@
 class RecipientsController < ApplicationController
+  respond_to :html, :js
 
   def index
   end
@@ -6,12 +7,20 @@ class RecipientsController < ApplicationController
   def new
     user = User.find(session[:user_id])
     @recipient = user.recipients.new
+
+    if request.xhr?
+      render :partial => "new", locals: { recipient: @recipient }
+    end
   end
 
   def create
     @user = User.find(session[:user_id])
     @recipient = Recipient.create(recipient_params)
-    redirect_back_or user_path(@user.id)
+    if request.xhr?
+      return 200
+    else
+      redirect_back_or user_path(@user.id)
+    end
   end
 
   private
