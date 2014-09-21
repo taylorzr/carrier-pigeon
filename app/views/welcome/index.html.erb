@@ -6,3 +6,16 @@
 <% if session[:user_id] %>
   <%= link_to 'Profile Page', user_path(session[:user_id]) %>
 <% end %>
+
+<table>
+<% @deliveries.each do |delivery| %>
+  <tr>
+    <td><%= delivery.package_size %></td>
+    <td><%= delivery.from_city %></td>
+    <td><%= delivery.to_city %></td>
+    <td><%= delivery.departure_date %></td>
+    <td><%= delivery.arrival_date %></td>
+    <td><%= link_to "Select this pigeon", [:edit, delivery] %>
+  </tr>
+<% end %>
+</table>
