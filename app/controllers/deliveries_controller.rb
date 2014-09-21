@@ -34,8 +34,8 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
+    store_location
     if not logged_in?
-      store_location
       redirect_to login_url
     else
       @delivery = Delivery.find(params[:id])
