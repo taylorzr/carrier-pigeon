@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def carrier_rating
-    assesments = Rating.where(rated_user: self.id).where(for_type: "carrier")
+    assesments = Rating.where(rated_user_id: self.id).where(for_type: "carrier")
 
     average = "Unrated"
 
 
     if assesments.length > 0
-      assesment_values = assesments.map{|entry| entry.rating}
+      assesment_values = assesments.map{|entry| entry.score}
 
       average = (assesment_values.inject{ |sum, el| sum + el }.to_f / assesment_values.size).round(2)
     end
@@ -25,13 +25,13 @@ class User < ActiveRecord::Base
   end
 
   def sender_rating
-    assesments = Rating.where(rated_user: self.id).where(for_type: "sender")
+    assesments = Rating.where(rated_user_id: self.id).where(for_type: "sender")
     average = "Unrated"
 
     puts "#{assesments} sup"
 
     if assesments.length > 0
-      assesment_values = assesments.map{|entry| entry.rating}
+      assesment_values = assesments.map{|entry| entry.score}
 
       average = (assesment_values.inject{ |sum, el| sum + el }.to_f / assesment_values.size).round(2)
     end

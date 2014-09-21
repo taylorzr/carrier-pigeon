@@ -6,7 +6,7 @@ describe 'User' do
     @user2 = User.create(name: "Mrs. Adolfo Fadel", username: "rosalee_renner", email: "jaron.mohr@blicklakin.info", password_digest: "password", city: "East Kaden")
     @delivery = Delivery.create(carrier_id: 1, sender_id: 2, recipient_id: 1, package_size: "Large", from_city: "Chicago", to_city: "Austin", price: 20, departure_date: Date.today, arrival_date: Date.tomorrow)
     @recipient = Recipient.create(user_id: 2, name: "Theo", email: "test")
-    @rating = Rating.create(for_type: "Carrier", rating_user_id: 2, rated_user_id: 1, delivery_id: 1, score: 5)
+    @rating = Rating.create(for_type: "carrier", rating_user_id: 2, rated_user_id: 1, delivery_id: 1, score: 5)
 
   end
 
