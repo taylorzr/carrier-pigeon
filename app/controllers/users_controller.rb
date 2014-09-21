@@ -23,8 +23,13 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-      params.require(:user).permit(:name, :username, :email, :password, :city)
-  end
+    def user_params
+        params.require(:user).permit(:name, :username, :email, :password, :city)
+    end
+
+    def redirect_back_or(default)
+      redirect_to(session[:return_to] || default)
+      session.delete(:return_to)
+    end
 
 end

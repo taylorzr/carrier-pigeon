@@ -34,9 +34,13 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
-    store_location
-    @delivery = Delivery.find(params[:id])
-    @recipients = User.find(session[:user_id]).recipients
+    if not logged_in?
+      store_location
+      redirect_to login_url
+    else
+      @delivery = Delivery.find(params[:id])
+      @recipients = User.find(session[:user_id]).recipients
+    end
   end
 
   def update
