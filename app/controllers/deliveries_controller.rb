@@ -34,6 +34,7 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
+    store_location
     @delivery = Delivery.find(params[:id])
     @recipients = User.find(session[:user_id]).recipients
   end
@@ -45,17 +46,21 @@ class DeliveriesController < ApplicationController
 
   private
 
-  def delivery_params
-    params.require(:delivery).permit(
-      :carrier_id,
-      :sender_id,
-      :recipient_id,
-      :package_size,
-      :from_city,
-      :to_city,
-      :price,
-      :departure_date,
-      :arrival_date
-    )
-  end
+    def delivery_params
+      params.require(:delivery).permit(
+        :carrier_id,
+        :sender_id,
+        :recipient_id,
+        :package_size,
+        :from_city,
+        :to_city,
+        :price,
+        :departure_date,
+        :arrival_date
+      )
+    end
+
+    def store_location
+      session[:return_to] = request.url if request.get?
+    end
 end
