@@ -16,7 +16,7 @@ end
   sender_id = (11..21).to_a.sample
   package_size = ["Small", "Medium", "Large"].sample
   time = Date.today - 7
-  Delivery.create!(carrier_id: carrier_id, sender_id: sender_id, recipient_id: User.find(sender_id).recipients.first, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, package_size: package_size, departure_date: time, arrival_date: (time + 1))
+  Delivery.create!(carrier_id: carrier_id, sender_id: sender_id, recipient_id: User.find(sender_id).recipients.first.id, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, package_size: package_size, departure_date: time, arrival_date: (time + 1))
 end
 
 #future delivery with carrier_id and sender_id
@@ -25,7 +25,7 @@ end
   sender_id = (11..21).to_a.sample
   package_size = ["Small", "Medium", "Large"].sample
   time = Date.today + 7
-  Delivery.create!(carrier_id: carrier_id, sender_id: sender_id, recipient_id: User.find(sender_id).recipients.first, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, package_size: package_size, departure_date: time, arrival_date: (time + 1))
+  Delivery.create!(carrier_id: carrier_id, sender_id: sender_id, recipient_id: User.find(sender_id).recipients.first.id, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, package_size: package_size, departure_date: time, arrival_date: (time + 1))
 end
 
 #future delivery without sender_id
@@ -42,5 +42,5 @@ end
   price = (10..100).to_a.sample
   package_size = ["Small", "Medium", "Large"].sample
   time = Date.today + 7
-  Delivery.create!(sender_id: sender_id, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, package_size: package_size )
+  Delivery.create!(sender_id: sender_id, from_city: Faker::Address.city, to_city: Faker::Address.city, price: 20, recipient_id: User.find(sender_id).recipients.first.id, package_size: package_size )
 end

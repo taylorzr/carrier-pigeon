@@ -4,10 +4,11 @@
 <div class='button send'><a href="<%= deliveries_path %>">Send a Package</a></div>
 <%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
 
+<% if @user.requested_sends.size != 0 || @user.pending_sends.size != 0 || @user.completed_sends.size != 0 %>
+  <h2>These are your Sends</h2>
+<% end %>
 
-<h2>These are your Sends</h2>
-
-<% if @user.requested_sends %>
+<% if @user.requested_sends.size != 0 %>
 <h3>Request to send</h3>
 <table>
   <tr>
@@ -28,7 +29,7 @@
 </table>
 <% end %>
 
-<% if @user.pending_sends %>
+<% if @user.pending_sends.size != 0 %>
 <h3>Pending sends</h3>
 <table>
   <tr>
@@ -55,7 +56,7 @@
 </table>
 <% end %>
 
-<% if @user.completed_sends %>
+<% if @user.completed_sends.size != 0 %>
 <h3>Delivered Parcels</h3>
 <table>
   <tr>
@@ -84,13 +85,11 @@
 
 
 
+<% if @user.requested_carries.size != 0 || @user.pending_carries.size != 0 || @user.completed_carries.size != 0 %>
+  <h2>These are your Carries</h2>
+<% end %>
 
-
-
-<h2>These are your Carries</h2>
-
-
-<% if @user.requested_carries %>
+<% if @user.requested_carries.size != 0 %>
 <h3>Request to carry</h3>
 <table>
   <tr>
@@ -113,7 +112,7 @@
 </table>
 <% end %>
 
-<% if @user.pending_carries %>
+<% if @user.pending_carries.size != 0 %>
 <h3>Pending carries</h3>
 <table>
   <tr>
@@ -140,7 +139,7 @@
 </table>
 <% end %>
 
-<% if @user.completed_carries %>
+<% if @user.completed_carries.size != 0 %>
 <h3>Delivered Parcels</h3>
 <table>
   <tr>
