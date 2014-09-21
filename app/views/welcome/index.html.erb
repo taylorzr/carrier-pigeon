@@ -1,4 +1,4 @@
-<h2>Welcome to Pigeon</h2>
+<h2>Welcome to Carrier Pigeon</h2>
 
 <div class='button carry'><a href="<%= new_delivery_path %>">Carry a Package</a></div>
 <div class='button send'><a href="<%= deliveries_path %>">Send a Package</a></div>
@@ -6,6 +6,7 @@
 <% if session[:user_id] %>
   <%= link_to 'Profile Page', user_path(session[:user_id]) %>
 <% end %>
+
 
 <table>
 <% @deliveries.each do |delivery| %>

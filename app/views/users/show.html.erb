@@ -87,7 +87,9 @@
 
 <% if @user.requested_carries.size != 0 || @user.pending_carries.size != 0 || @user.completed_carries.size != 0 %>
   <h2>These are your Carries</h2>
+  Your Carrier Rating:<%= @user.carrier_rating %>
 <% end %>
+
 
 <% if @user.requested_carries.size != 0 %>
 <h3>Request to carry</h3>
