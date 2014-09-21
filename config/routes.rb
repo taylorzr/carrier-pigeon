@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :ratings
   end
 
+  resources :ratings
+
   get '/login'  => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout

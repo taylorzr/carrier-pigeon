@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+
   def carrier_rating
     assesments = Rating.where(rated_user_id: self.id).where(for_type: "carrier")
 
