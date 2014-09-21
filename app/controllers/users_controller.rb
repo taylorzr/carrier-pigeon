@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     end
 
     def redirect_back_or(default)
-      redirect_to(session[:return_to] || default)
+      redirect_to(default || session[:return_to])
       session.delete(:return_to)
     end
 
