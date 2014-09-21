@@ -11,7 +11,7 @@ class DeliveriesController < ApplicationController
   end
 
   def new
-    if session[:user_id]
+    if not logged_in?
       @delivery = Delivery.new
       @sender_deliveries = Delivery.where(carrier_id: nil)
     else
@@ -21,7 +21,7 @@ class DeliveriesController < ApplicationController
 
   def show
     @delivery = Delivery.find(params[:id])
-    @current_user = User.find(session[:user_id])
+    @current_user = current_user
   end
 
   def create
