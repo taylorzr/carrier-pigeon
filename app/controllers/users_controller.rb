@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session.delete(:return_to)
       session[:user_id] = @user.id
       redirect_back_or user_path(session[:user_id])
     else
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     end
 
     def redirect_back_or(default)
-      redirect_to(default || session[:return_to])
+      redirect_to(session[:return_to] || default)
       session.delete(:return_to)
     end
 

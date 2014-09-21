@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917150723) do
+ActiveRecord::Schema.define(version: 20140921194413) do
 
   create_table "deliveries", force: true do |t|
     t.integer  "carrier_id"
