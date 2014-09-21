@@ -11,7 +11,7 @@ class DeliveriesController < ApplicationController
   end
 
   def new
-    if not logged_in?
+    if logged_in?
       @delivery = Delivery.new
       @sender_deliveries = Delivery.where(carrier_id: nil)
     else
