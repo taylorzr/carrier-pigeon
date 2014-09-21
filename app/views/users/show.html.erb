@@ -6,6 +6,7 @@
 
 <% if @user.requested_sends.size != 0 || @user.pending_sends.size != 0 || @user.completed_sends.size != 0 %>
   <h2>These are your Sends</h2>
+  Your Sender Rating: <%= @user.sender_rating %>
 <% end %>
 
 <% if @user.requested_sends.size != 0 %>
@@ -47,7 +48,7 @@
     <td><%= delivery.from_city %></td>
     <td><%= delivery.to_city %></td>
     <td><%= delivery.recipient.name %></td>
-    <td><%= delivery.sender.name %></td>
+    <td><%= delivery.carrier.name %></td>
     <td><%= delivery.departure_date %></td>
     <td><%= delivery.arrival_date %></td>
   </tr>
@@ -65,6 +66,7 @@
     <th>To</th>
     <th>Recipient</th>
     <th>Traveler</th>
+    <th>Rating</th>
     <th>Departure Date</th>
     <th>Arrival Date</th>
   </tr>
@@ -74,9 +76,31 @@
     <td><%= delivery.from_city %></td>
     <td><%= delivery.to_city %></td>
     <td><%= delivery.recipient.name %></td>
-    <td><%= delivery.sender.name %></td>
+    <td><%= delivery.carrier.name %></td>
+    <td><%= delivery.carrier.carrier_rating %></td>
     <td><%= delivery.departure_date %></td>
     <td><%= delivery.arrival_date %></td>
+    <!-- Rating stuff -->
+
+    <% if delivery.rate_carrier? %>
+        <!-- include ratings in the controller -->
+        <%= form_for @rating do |f|%>
+        <%= f.hidden_field :rating_user_id, value: session[:user_id] %>
+        <%= f.hidden_field :rated_user_id, value: delivery.carrier.id %>
+        <%= f.hidden_field :for_type, value: "carrier" %>
+        <%= f.hidden_field :delivery_id, value: delivery.id %>
+
+        <% options = options_for_select([[5,5],[4,4],[3,3],[2,2],[1,1]]) %>
+        <td><%= f.select :score, options %></td>
+
+        <td><%= f.submit 'Rate'%></td>
+        <% end %>
+
+      <% end %>
+
+
+
+
   </tr>
   <% end %>
 
@@ -87,7 +111,7 @@
 
 <% if @user.requested_carries.size != 0 || @user.pending_carries.size != 0 || @user.completed_carries.size != 0 %>
   <h2>These are your Carries</h2>
-  Your Carrier Rating:<%= @user.carrier_rating %>
+  Your Carrier Rating: <%= @user.carrier_rating %>
 <% end %>
 
 
@@ -123,6 +147,7 @@
     <th>To</th>
     <th>Recipient</th>
     <th>Traveler</th>
+    <th>Rating</th>
     <th>Departure Date</th>
     <th>Arrival Date</th>
   </tr>
@@ -133,6 +158,7 @@
     <td><%= delivery.to_city %></td>
     <td><%= delivery.recipient.name %></td>
     <td><%= delivery.sender.name %></td>
+    <td><%= delivery.sender.sender_rating %></td>
     <td><%= delivery.departure_date %></td>
     <td><%= delivery.arrival_date %></td>
   </tr>
@@ -150,6 +176,7 @@
     <th>To</th>
     <th>Recipient</th>
     <th>Traveler</th>
+    <th>Rating</th>
     <th>Departure Date</th>
     <th>Arrival Date</th>
   </tr>
@@ -160,8 +187,26 @@
     <td><%= delivery.to_city %></td>
     <td><%= delivery.recipient.name %></td>
     <td><%= delivery.sender.name %></td>
+    <td><%= delivery.sender.sender_rating %></td>
     <td><%= delivery.departure_date %></td>
     <td><%= delivery.arrival_date %></td>
+
+    <% if delivery.rate_sender? %>
+      <!-- include ratings in the controller -->
+      <%= form_for @rating do |f|%>
+      <%= f.hidden_field :rating_user_id, value: session[:user_id] %>
+      <%= f.hidden_field :rated_user_id, value: delivery.sender.id %>
+      <%= f.hidden_field :for_type, value: "sender" %>
+      <%= f.hidden_field :delivery_id, value: delivery.id %>
+
+      <% options = options_for_select([[5,5],[4,4],[3,3],[2,2],[1,1]]) %>
+      <td><%= f.select :score, options %></td>
+
+      <td><%= f.submit 'Rate'%></td>
+      <% end %>
+
+    <% end %>
+
   </tr>
   <% end %>
 
