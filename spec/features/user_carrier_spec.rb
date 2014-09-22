@@ -38,6 +38,6 @@ feature 'Send a parcel' do
   scenario 'clicking the link to send a package takes you to a page with list of deliveries' do
     visit root_url
     click_link 'Send a Package'
-    expect(page).to have_content("Upcoming Trips")
+    expect(page).to have_content("Send a Package")
   end
 end
