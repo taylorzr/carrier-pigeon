@@ -1,8 +1,21 @@
-<%= form_for @user do |f| %>
-  <%= f.text_field :name, placeholder: :name  %> <br>
-  <%= f.text_field :username, placeholder: :username %> <br>
-  <%= f.text_field :email, placeholder: :email  %> <br>
-  <%= f.password_field :password, placeholder: :password  %> <br>
-  <%= f.text_field :city, placeholder: :city  %> <br>
-  <%= f.submit "Submit" %>
-<% end %>
+<div class="sign-up-container">
+  <h2>Sign Up</h2>
+  <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: :name  %> <br>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :username, placeholder: :username %> <br>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :email, placeholder: :email  %> <br>
+  </div>
+  <div class="form-group">
+    <%= f.password_field :password, placeholder: :password  %> <br>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :city, placeholder: :city  %> <br>
+  </div>
+  <input type="submit" value="Sign Up">
+  <% end %>
+</div>

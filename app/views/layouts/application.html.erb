@@ -2,18 +2,25 @@
 <html>
 <head>
   <title>CarrierPigeon</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.17.2/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 <% if !current_page?(login_path) && !current_page?(new_user_path) %>
-  <% if session[:user_id] %>
-    <%= link_to "Home", root_path %>
+  <nav><% if session[:user_id] %>
+    <div><%= link_to "Home", root_path %>
     <%= link_to "Profile", user_path(session[:user_id]) %>
-    <%= link_to "Log Out", logout_path %>
+    <span><%= link_to "Log Out", logout_path %></span>
+    </div>
   <% else %>
     <%= link_to "Login", login_path %>
     <%= link_to "Sign up", new_user_path %>
   <% end %>
+  </nav>
 <% end %>
 <%= yield %>
 

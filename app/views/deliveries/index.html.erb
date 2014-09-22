@@ -1,31 +1,39 @@
-<h2>Upcoming Trips</h2>
+<div class="container">
+  <h2>Upcoming Trips</h2>
 
-<table>
-  <tr>
-    <th>Package Size</th>
-    <th>Depart From</th>
-    <th>Departure Date</th>
-    <th>Arrive At</th>
-    <th>Arrival Date</th>
-    <th>Price</th>
-    </th>
-  </tr>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr class="clickableRow" href="www.youtube.com">
+        <th>Package Size</th>
+        <th>Depart From</th>
+        <th>Departure Date</th>
+        <th>Arrive At</th>
+        <th>Arrival Date</th>
+        <th>Price</th>
+        <th></th>
+      </th>
+    </tr>
 
 
 
-  <% @carrier_deliveries.each do |d| %>
-   <tr>
+    <% @carrier_deliveries.each do |d| %>
+    <tr>
       <td><%= d.package_size %></td>
       <td><%= d.from_city %></td>
       <td><%= d.departure_date %></td>
       <td><%= d.to_city %></td>
       <td><%= d.arrival_date %></td>
       <td>$<%= d.price %></td>
-      <td><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></td>
+
+      <td><button type="button" class="btn btn-primary"><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></button></td>
+
     </tr>
-  <% end %>
-</table>
+    <% end %>
+  </table>
+</div>
+
 <h2>Request a Carrier</h2>
 <%= render 'sender_form' %>
 <br>
+</div>
 

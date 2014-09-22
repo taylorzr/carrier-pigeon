@@ -1,8 +1,15 @@
-<%= form_tag("/login", :method => "post") do %>
-  Username<%= text_field_tag(:username)%><br>
-  Password<%= password_field_tag(:password)%><br>
-  <%= submit_tag(:login) %>
-<% end %>
-<br>
-<%= link_to "Sign up", new_user_path %>
+<div class="sign-up-container">
+  <h2>Login</h2>
 
+  <%= form_tag("/login", :method => "post") do %>
+  <div class="form-group">
+    <%= text_field_tag :username, nil, placeholder: :username %><br>
+  </div>
+  <div class="form-group">
+    <%= password_field_tag(:password, nil, placeholder: :password)%><br>
+  </div>
+    <%= submit_tag(:login) %>
+  <% end %>
+  <br>
+  <%= link_to "Sign up", new_user_path %>
+</div>

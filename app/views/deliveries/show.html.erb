@@ -1,3 +1,4 @@
+<div class="container">
 <h2>Your Delivery</h2>
 <% if @delivery.sender %>
   Sender Name: <%= @delivery.sender.name %><br>
@@ -23,3 +24,4 @@ Price: $<%= @delivery.price %>0<br>
 <br>
 <!-- <%= link_to 'Confirmation', edit_delivery_path %><br> -->
 <%= link_to 'Back', user_path(@current_user.id) %>
+</div>
