@@ -1,215 +1,202 @@
-<h2>Profile for <%= @user.name %></h2>
+<div class="container">
+  <h2>Profile for <%= @user.name %></h2>
 
-<div class='button carry'><a href="<%= new_delivery_path %>">Carry a Package</a></div>
-<div class='button send'><a href="<%= deliveries_path %>">Send a Package</a></div>
-<%= link_to 'Add new recipient', new_user_recipient_path(session[:user_id]) %>
+  <button type="button" class="btn btn-primary"><a href="<%= new_delivery_path %>">Carry a Package</a></button>
+    <button type="button" class="btn btn-primary"><a href="<%= deliveries_path %>">Send a Package</a></button>
+    <button type="button" class="btn btn-primary"><a href="<%= new_user_recipient_path(session[:user_id])%>">Add New Recipient</a></button>
 
-<% if @user.requested_sends.size != 0 || @user.pending_sends.size != 0 || @user.completed_sends.size != 0 %>
-  <h2>These are your Sends</h2>
-  Your Sender Rating: <%= @user.sender_rating %>
-<% end %>
-
-<% if @user.requested_sends.size != 0 %>
-<h3>Request to send</h3>
-<table>
-  <tr>
-    <th>Package size</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Recipient</th>
-  </tr>
-  <% @user.requested_sends.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.recipient.name %></td>
-  </tr>
+  <% if @user.requested_sends.size != 0 || @user.pending_sends.size != 0 || @user.completed_sends.size != 0 %>
+    <h2>Packages You've Sent</h2>
+    Your Sender Rating: <%= @user.sender_rating %>
   <% end %>
 
-</table>
-<% end %>
-
-<% if @user.pending_sends.size != 0 %>
-<h3>Pending sends</h3>
-<table>
-  <tr>
-    <th>Package size</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Recipient</th>
-    <th>Traveler</th>
-    <th>Departure Date</th>
-    <th>Arrival Date</th>
-  </tr>
-  <% @user.pending_sends.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.recipient.name %></td>
-    <td><%= delivery.carrier.name %></td>
-    <td><%= delivery.departure_date %></td>
-    <td><%= delivery.arrival_date %></td>
-  </tr>
-  <% end %>
-
-</table>
-<% end %>
-
-<% if @user.completed_sends.size != 0 %>
-<h3>Delivered Parcels</h3>
-<table>
-  <tr>
-    <th>Package size</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Recipient</th>
-    <th>Traveler</th>
-    <th>Rating</th>
-    <th>Departure Date</th>
-    <th>Arrival Date</th>
-  </tr>
-  <% @user.completed_sends.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.recipient.name %></td>
-    <td><%= delivery.carrier.name %></td>
-    <td><%= delivery.carrier.carrier_rating %></td>
-    <td><%= delivery.departure_date %></td>
-    <td><%= delivery.arrival_date %></td>
-    <!-- Rating stuff -->
-
-    <% if delivery.rate_carrier? %>
-        <!-- include ratings in the controller -->
-        <%= form_for @rating do |f|%>
-        <%= f.hidden_field :rating_user_id, value: session[:user_id] %>
-        <%= f.hidden_field :rated_user_id, value: delivery.carrier.id %>
-        <%= f.hidden_field :for_type, value: "carrier" %>
-        <%= f.hidden_field :delivery_id, value: delivery.id %>
-
-        <% options = options_for_select([[5,5],[4,4],[3,3],[2,2],[1,1]]) %>
-        <td><%= f.select :score, options %></td>
-
-        <td><%= f.submit 'Rate'%></td>
+  <div class="sender">
+    <% if @user.requested_sends.size != 0 %>
+      <h3>Send Requests</h3>
+      <table class="table table-hover">
+        <tr>
+          <th>Package size</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Recipient</th>
+        </tr>
+        <% @user.requested_sends.each do |delivery| %>
+        <tr>
+          <td><%= delivery.package_size %></td>
+          <td><%= delivery.from_city %></td>
+          <td><%= delivery.to_city %></td>
+          <td><%= delivery.recipient.name %></td>
+        </tr>
         <% end %>
-
-      <% end %>
-
-
-
-
-  </tr>
-  <% end %>
-
-</table>
-<% end %>
-
-
-
-<% if @user.requested_carries.size != 0 || @user.pending_carries.size != 0 || @user.completed_carries.size != 0 %>
-  <h2>These are your Carries</h2>
-  Your Carrier Rating: <%= @user.carrier_rating %>
-<% end %>
-
-
-<% if @user.requested_carries.size != 0 %>
-<h3>Request to carry</h3>
-<table>
-  <tr>
-    <th>Package size</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Departure Date</th>
-    <th>Arrival Date</th>
-  </tr>
-  <% @user.requested_carries.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.departure_date %></td>
-    <td><%= delivery.arrival_date %></td>
-  </tr>
-  <% end %>
-
-</table>
-<% end %>
-
-<% if @user.pending_carries.size != 0 %>
-<h3>Pending carries</h3>
-<table>
-  <tr>
-    <th>Package size</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Recipient</th>
-    <th>Traveler</th>
-    <th>Rating</th>
-    <th>Departure Date</th>
-    <th>Arrival Date</th>
-  </tr>
-  <% @user.pending_carries.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.recipient.name %></td>
-    <td><%= delivery.sender.name %></td>
-    <td><%= delivery.sender.sender_rating %></td>
-    <td><%= delivery.departure_date %></td>
-    <td><%= delivery.arrival_date %></td>
-  </tr>
-  <% end %>
-
-</table>
-<% end %>
-
-<% if @user.completed_carries.size != 0 %>
-<h3>Delivered Parcels</h3>
-<table>
-  <tr>
-    <th>Package size</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Recipient</th>
-    <th>Traveler</th>
-    <th>Rating</th>
-    <th>Departure Date</th>
-    <th>Arrival Date</th>
-  </tr>
-  <% @user.completed_carries.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.recipient.name %></td>
-    <td><%= delivery.sender.name %></td>
-    <td><%= delivery.sender.sender_rating %></td>
-    <td><%= delivery.departure_date %></td>
-    <td><%= delivery.arrival_date %></td>
-
-    <% if delivery.rate_sender? %>
-      <!-- include ratings in the controller -->
-      <%= form_for @rating do |f|%>
-      <%= f.hidden_field :rating_user_id, value: session[:user_id] %>
-      <%= f.hidden_field :rated_user_id, value: delivery.sender.id %>
-      <%= f.hidden_field :for_type, value: "sender" %>
-      <%= f.hidden_field :delivery_id, value: delivery.id %>
-
-      <% options = options_for_select([[5,5],[4,4],[3,3],[2,2],[1,1]]) %>
-      <td><%= f.select :score, options %></td>
-
-      <td><%= f.submit 'Rate'%></td>
-      <% end %>
-
+      </table>
     <% end %>
 
-  </tr>
+    <% if @user.pending_sends.size != 0 %>
+      <h3>In-Process Send Requests</h3>
+      <table class="table table-hover">
+        <tr>
+          <th>Package size</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Recipient</th>
+          <th>Traveler</th>
+          <th>Departure Date</th>
+          <th>Arrival Date</th>
+        </tr>
+        <% @user.pending_sends.each do |delivery| %>
+          <tr>
+            <td><%= delivery.package_size %></td>
+            <td><%= delivery.from_city %></td>
+            <td><%= delivery.to_city %></td>
+            <td><%= delivery.recipient.name %></td>
+            <td><%= delivery.carrier.name %></td>
+            <td><%= delivery.departure_date %></td>
+            <td><%= delivery.arrival_date %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @user.completed_sends.size != 0 %>
+      <h3>Completed Deliveries</h3>
+      <table class="table table-hover">
+        <tr>
+          <th>Package size</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Recipient</th>
+          <th>Traveler</th>
+          <th>Rating</th>
+          <th>Departure Date</th>
+          <th>Arrival Date</th>
+        </tr>
+        <% @user.completed_sends.each do |delivery| %>
+          <tr>
+            <td><%= delivery.package_size %></td>
+            <td><%= delivery.from_city %></td>
+            <td><%= delivery.to_city %></td>
+            <td><%= delivery.recipient.name %></td>
+            <td><%= delivery.carrier.name %></td>
+            <td><%= delivery.carrier.carrier_rating %></td>
+            <td><%= delivery.departure_date %></td>
+            <td><%= delivery.arrival_date %></td>
+            <% if delivery.rate_carrier? %>
+              <%= form_for @rating do |f|%>
+                <%= f.hidden_field :rating_user_id, value: session[:user_id] %>
+                <%= f.hidden_field :rated_user_id, value: delivery.carrier.id %>
+                <%= f.hidden_field :for_type, value: "carrier" %>
+                <%= f.hidden_field :delivery_id, value: delivery.id %>
+                <% options = options_for_select([[5,5],[4,4],[3,3],[2,2],[1,1]]) %>
+                <td><%= f.select :score, options %></td>
+                <td><%= f.submit 'Rate'%></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+
+
+  <% if @user.requested_carries.size != 0 || @user.pending_carries.size != 0 || @user.completed_carries.size != 0 %>
+    <h2>Packages You've Carried</h2>
+    Your Carrier Rating: <%= @user.carrier_rating %>
   <% end %>
 
-</table>
-<% end %>
+
+  <div class="carrier">
+    <% if @user.requested_carries.size != 0 %>
+      <h3>Carry Requests</h3>
+      <table class="table table-hover">
+        <tr>
+          <th>Package size</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Departure Date</th>
+          <th>Arrival Date</th>
+        </tr>
+        <% @user.requested_carries.each do |delivery| %>
+        <tr>
+          <td><%= delivery.package_size %></td>
+          <td><%= delivery.from_city %></td>
+          <td><%= delivery.to_city %></td>
+          <td><%= delivery.departure_date %></td>
+          <td><%= delivery.arrival_date %></td>
+        </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @user.pending_carries.size != 0 %>
+      <h3>In-Process Carry Requests</h3>
+      <table class="table table-hover">
+        <tr>
+          <th>Package size</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Recipient</th>
+          <th>Traveler</th>
+          <th>Rating</th>
+          <th>Departure Date</th>
+          <th>Arrival Date</th>
+        </tr>
+        <% @user.pending_carries.each do |delivery| %>
+        <tr>
+          <td><%= delivery.package_size %></td>
+          <td><%= delivery.from_city %></td>
+          <td><%= delivery.to_city %></td>
+          <td><%= delivery.recipient.name %></td>
+          <td><%= delivery.sender.name %></td>
+          <td><%= delivery.sender.sender_rating %></td>
+          <td><%= delivery.departure_date %></td>
+          <td><%= delivery.arrival_date %></td>
+        </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @user.completed_carries.size != 0 %>
+    <h3>Completed Deliveries</h3>
+    <table class="table table-hover">
+      <tr>
+        <th>Package size</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Recipient</th>
+        <th>Traveler</th>
+        <th>Rating</th>
+        <th>Departure Date</th>
+        <th>Arrival Date</th>
+      </tr>
+      <% @user.completed_carries.each do |delivery| %>
+        <tr>
+          <td><%= delivery.package_size %></td>
+          <td><%= delivery.from_city %></td>
+          <td><%= delivery.to_city %></td>
+          <td><%= delivery.recipient.name %></td>
+          <td><%= delivery.sender.name %></td>
+          <td><%= delivery.sender.sender_rating %></td>
+          <td><%= delivery.departure_date %></td>
+          <td><%= delivery.arrival_date %></td>
+
+          <% if delivery.rate_sender? %>
+            <%= form_for @rating do |f|%>
+              <%= f.hidden_field :rating_user_id, value: session[:user_id] %>
+              <%= f.hidden_field :rated_user_id, value: delivery.sender.id %>
+              <%= f.hidden_field :for_type, value: "sender" %>
+              <%= f.hidden_field :delivery_id, value: delivery.id %>
+
+              <% options = options_for_select([[5,5],[4,4],[3,3],[2,2],[1,1]]) %>
+              <td><%= f.select :score, options %></td>
+
+              <td><%= f.submit 'Rate'%></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  </div>
+</div>
 

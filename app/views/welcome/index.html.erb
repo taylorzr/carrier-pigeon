@@ -1,22 +1,31 @@
-<h2>Welcome to Carrier Pigeon</h2>
+<div class="container">
+  <h2>Welcome to Carrier Pigeon</h2>
+  <button type="button" class="btn btn-primary"><a href="<%= new_delivery_path %>">Carry a Package</a></button>
+  <button type="button" class="btn btn-primary"><a href="<%= deliveries_path %>">Send a Package</a></button>
 
-<div class='button carry'><a href="<%= new_delivery_path %>">Carry a Package</a></div>
-<div class='button send'><a href="<%= deliveries_path %>">Send a Package</a></div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>Package Size</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Departure Date</th>
+        <th>Arrival Date</th>
+        <th></th>
+      </tr>
 
-<% if session[:user_id] %>
-  <%= link_to 'Profile Page', user_path(session[:user_id]) %>
-<% end %>
 
+      <% @deliveries.each do |delivery| %>
+      <tr>
+        <td><%= delivery.package_size %></td>
+        <td><%= delivery.from_city %></td>
+        <td><%= delivery.to_city %></td>
+        <td><%= delivery.departure_date %></td>
+        <td><%= delivery.arrival_date %></td>
 
-<table>
-<% @deliveries.each do |delivery| %>
-  <tr>
-    <td><%= delivery.package_size %></td>
-    <td><%= delivery.from_city %></td>
-    <td><%= delivery.to_city %></td>
-    <td><%= delivery.departure_date %></td>
-    <td><%= delivery.arrival_date %></td>
-    <td><%= link_to "Select this pigeon", [:edit, delivery] %>
-  </tr>
-<% end %>
-</table>
+        <td><button type="button" class="btn btn-primary"><a href="<%= edit_delivery_path(delivery.id) %>">Select this Pigeon</a></button></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
