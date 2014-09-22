@@ -1,9 +1,5 @@
 class RatingsController < ApplicationController
 
-  def new
-
-  end
-
   def create
     rating = Rating.create!(ratings_params)
     redirect_to user_path(session[:user_id])
