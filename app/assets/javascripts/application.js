@@ -17,23 +17,29 @@
 //= require_tree .
 
 $(document).ready(function(){
-	$('#add_recipient').on('click', function(event){
+	$(document).on('click', '#add_recipient', function(event) {
+
+	//$('#add_recipient').on('click', function(event){
 		event.preventDefault();
 		var $container = $("#add_recipient_form");
 
 		var action = "/users/1/recipients/new";
 
-		var request = $.ajax({
-			url: action, 
-			type: "GET"
-		});
+		// var request = $.ajax({
+		// 	url: action, 
+		// 	type: "GET"
+		// });
 
-		request.done(function(response){
-			($container).html(response);
+		// request.done(function(response){
+		// 	$container.html(response);
+		// });
+
+		$.get("/users/1/recipients/new", function(response) {
+			$container.html(response);
 		});
 	});
 
-	$('#add_recipient_form').on('click', 'input[type="submit"]', function(event){
+	$(document).on('click', '#add_recipient_form input[type="submit"]', function(event){
 		event.preventDefault();
 		var button = $(this);
 		var form = button.parent();
@@ -49,8 +55,8 @@ $(document).ready(function(){
 			data: {"recipient[email]": email, "recipient[name]": name}
 		});
 
-		request.done(function(){
-
+		request.done(function(resp){
+			$('#add_recipient_form').hide();
 		});
 
 

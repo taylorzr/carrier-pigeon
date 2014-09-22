@@ -1,6 +1,5 @@
 class RecipientsController < ApplicationController
-  respond_to :html, :js
-
+ 
   def index
   end
 
@@ -15,9 +14,13 @@ class RecipientsController < ApplicationController
 
   def create
     @user = User.find(session[:user_id])
-    @recipient = Recipient.create(recipient_params)
+    @recipient = @user.recipients.create!(recipient_params)
+
     if request.xhr?
-      return 200
+      #render :text => 'test!'
+      render :nothing => true
+      # render :json => {:user_id => @user.id, :recipient_name => @recipient.name, :recipient_email => @recipient.email}
+      # render :create # this happens by default
     else
       redirect_back_or user_path(@user.id)
     end
@@ -26,7 +29,7 @@ class RecipientsController < ApplicationController
   private
 
     def recipient_params
-        params.require(:recipient).permit(:user_id, :name, :email)
+        params.require(:recipient).permit(:name, :email)
     end
 
     def redirect_back_or(default)
