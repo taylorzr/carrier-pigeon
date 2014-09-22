@@ -53,4 +53,50 @@ describe 'Delivery' do
   it "should have a arrival date tomorrow" do
     expect(@delivery.arrival_date).to eq(Date.tomorrow)
   end
+
+  describe '#rate_sender?' do
+    it 'should return false if the sender has not been rated' do
+      expect(@delivery.rate_sender?).to be_truthy
+    end
+
+    it 'should return true if the sender has been rated' do
+      sender = @delivery.sender
+      Rating.create!(rated_user: sender, for_type: "sender", delivery: @delivery)
+      expect(@delivery.rate_sender?).to be_falsey
+    end
+  end
+
+  describe '#rate_carrier?' do
+    it 'should return false if the sender has not been rated' do
+      expect(@delivery.rate_sender?).to be_truthy
+    end
+
+    it 'should return true if the sender has been rated' do
+      carrier = @delivery.carrier
+      Rating.create!(rated_user: carrier, for_type: "carrier", delivery: @delivery)
+      expect(@delivery.rate_carrier?).to be_falsey
+    end
+  end
+
+  describe '::available_pigeons' do 
+    before (:each) do
+      @delivery = Delivery.create!(
+        carrier_id: 1, 
+        from_city: "Chicago", 
+        to_city: "Austin", 
+        price: 20, 
+        departure_date: Date.tomorrow, 
+        arrival_date: Date.tomorrow
+      )
+    end
+
+    it 'should return a list of deliveries without senders' do
+      expect(Delivery.available_pigeons.count).to eq(1)
+    end
+
+    it 'should return an empty list if there are no deliveries without senders' do
+      @delivery.update!(sender_id: 1, recipient_id: 1)
+      expect(Delivery.available_pigeons.count).to eq(0)
+    end
+  end
 end
