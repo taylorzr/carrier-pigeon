@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Upcoming Trips</h2>
+  <h2>Send a Package</h2>
 
   <div class="table-responsive">
     <table class="table table-hover">
@@ -23,9 +23,9 @@
       <td><%= d.departure_date %></td>
       <td><%= d.to_city %></td>
       <td><%= d.arrival_date %></td>
-      <td>$<%= d.price %></td>
+      <td>$<%= d.price %>0</td>
 
-      <td><button type="button" class="btn btn-primary"><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></button></td>
+      <td><button type="button" class="btn btn-primary"><a href="<%= edit_delivery_path(d.id) %>">Select this Pigeon</a></button></td>
 
     </tr>
     <% end %>

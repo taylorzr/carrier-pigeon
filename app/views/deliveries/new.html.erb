@@ -1,5 +1,5 @@
 <div class="container">
-<h2>Carry A Package Below</h2>
+<h2>Carry A Package</h2>
 
 <table class="table table-hover">
   <tr>
@@ -7,6 +7,7 @@
     <th>Depart From</th>
     <th>Arrive At</th>
     <th>Price</th>
+    <th></th>
     </th>
   </tr>
 
@@ -17,8 +18,9 @@
       <td><%= d.package_size %></td>
       <td><%= d.from_city %></td>
       <td><%= d.to_city %></td>
-      <td>$<%= d.price %></td>
-      <td><a href="<%= edit_delivery_path(d.id) %>">Select this Delivery</a></td>
+      <td>$<%= d.price %>0</td>
+
+      <td><button type="button" class="btn btn-primary"><a href="<%= edit_delivery_path(d.id)  %>">Select this Pigeon</a></button></td>
     </tr>
   <% end %>
 </table>
